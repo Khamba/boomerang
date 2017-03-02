@@ -1,0 +1,24 @@
+<div class="row">
+  <div class="col-xs-12 col-sm-8 col-md-6 col-lg-6 col-sm-offset-2 col-md-offset-3">
+
+    <h1 class='text-center'>Edit Product</h1>
+
+    <%= simple_form_for(@product, html: { class: 'form-horizontal', multipart: true }) do |f| %>
+
+      <%= f.input :name, required: false %>
+      <%= f.input :rent_price %>
+      <%= f.input :actual_price %>
+      <%= f.input :sizes_available, collection: Product::SIZES, as: :check_boxes %>
+      <%= f.association :categories, as: :check_boxes %>
+      <%= f.input :description %>
+      <%= f.input :images, as: :file, input_html: { multiple: true } %>
+
+      <%= f.submit %>
+
+    <% end %>
+
+
+    <%= link_to 'All products', products_path %>
+
+  </div>
+</div>

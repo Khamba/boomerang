@@ -1,0 +1,305 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Product layout</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="keywords" content="Template, html, premium, themeforest" />
+    <meta name="description" content="TheBox - premium e-commerce template">
+    <meta name="author" content="Tsoy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400italic,400' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mystyles.css">
+    <link rel="stylesheet" href="/css/switcher.css" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/bright-turquoise.css" title="bright-turquoise" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/turkish-rose.css" title="turkish-rose" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/salem.css" title="salem" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/hippie-blue.css" title="hippie-blue" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/mandy.css" title="mandy" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/green-smoke.css" title="green-smoke" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/horizon.css" title="horizon" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/cerise.css" title="cerise" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/brick-red.css" title="brick-red" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/de-york.css" title="de-york" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/shamrock.css" title="shamrock" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/studio.css" title="studio" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/leather.css" title="leather" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/denim.css" title="denim" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/scarlet.css" title="scarlet" media="all" />
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/css/bootstrap-datetimepicker.min.css">
+</head>
+
+<body>
+    <div class="global-wrapper clearfix" id="global-wrapper">
+
+      <nav class="navbar navbar-inverse navbar-main yamm" style="">
+          <div class="container">
+              <div class="navbar-header">
+                  <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-nav-collapse" area_expanded="false"><span class="sr-only">Main Menu</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/" style="color: white">
+                      The boomerang
+                  </a>
+              </div>
+              <div class="collapse navbar-collapse" id="main-nav-collapse">
+
+
+                  <ul class="nav navbar-nav navbar-right">
+
+                      <li><a href="/western-dresses.html" data-effect="mfp-move-from-top">Western Dress</a>
+                      </li>
+
+                      <li><a href="/wedding-dresses.html" data-effect="mfp-move-from-top">Wedding Dress</a>
+                      </li>
+
+                      <li><a href="login.html" data-effect="mfp-move-from-top">Sign In</a>
+                      </li>
+
+
+                      <li class="dropdown">
+                          <a class="fa fa-shopping-cart" href="shopping-cart.html"></a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+
+        <div class="product-page-area">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                    <div class="product-page-product-wrap jqzoom-stage jqzoom-stage-lg">
+                        <div class="clearfix">
+                            <a href=<%= @product.images[0].url %> id="jqzoom" data-rel="gal-1">
+                                <img class="full-width" src=<%= @product.images[0].url %> alt="Image Alternative text" title="Image Title" />
+                            </a>
+                        </div>
+                    </div>
+                    <ul class="jqzoom-list">
+                        <% @product.images.each do |image| %>
+                        <li>
+                            <a class="zoomThumbActive" href="javascript:void(0)" data-rel="{gallery:'gal-1', smallimage: <%= image.url %>, largeimage: <%= image.url %>}">
+                                <img src=<%= image.url %> alt="Image Alternative text" title="Image Title" />
+                            </a>
+                        </li>
+                        <% end %>
+                    </ul>
+                </div>
+
+                <div class="col-md-6">
+
+                    <h1><%= @product.name %></h1>
+                    <p class="product-page-price"><%= @product.rent_price %>/- </p>
+                    <p class="text-muted">Actual Price - <%= @product.actual_price %></p>
+
+
+                    <form class="form-horizontal">
+                            <fieldset>
+
+                                    <!-- Multiple Radios (inline) -->
+                                    <div class="form-group">
+                                      <label class="col-md-4 control-label" for="size">Size</label>
+                                      <div class="col-md-4">
+                                        <% @product.sizes_available.each do |size| %>
+                                          <label class="radio-inline" for="radios-0">
+                                            <input type="radio" name="size" id="radios-0" value=<%= size %>>
+                                            <%= size %>
+                                          </label>
+                                        <% end %>
+
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="col-md-4 control-label" for="rentForDays">Rent for days</label>
+                                      <div class="col-md-4">
+                                        <label class="radio-inline" for="radios-0">
+                                          <input type="radio" name="rentForDays" id="radios-0" value="3" checked="checked">
+                                          3
+                                        </label>
+                                        <label class="radio-inline" for="radios-1">
+                                          <input type="radio" name="rentForDays" id="radios-1" value="5">
+                                          5
+                                        </label>
+                                        <label class="radio-inline" for="radios-2">
+                                          <input type="radio" name="rentForDays" id="radios-2" value="7">
+                                          7
+                                        </label>
+                                      </div>
+                                    </div>
+
+
+
+                                    <div class="form-group">
+                                      <label class="col-md-4 control-label" for="cart">Delivery date</label>
+                                      <div class="col-md-4">
+                                        <div class='input-group date' id='datetimepicker1'>
+                                                    <input type='text' class="form-control" />
+                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>
+                                                </div>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="col-md-4 control-label" for="cart">Rent Now</label>
+                                      <div class="col-md-4">
+                                        <button id="cart" name="cart" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                      </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                      <label class="col-md-4 control-label" for="cart">Buy now</label>
+                                      <div class="col-md-4">
+                                        <button id="cart" name="cart" class="btn btn-primary">buy now</button>
+                                      </div>
+                                    </div>
+                            </fieldset>
+                    </form>
+
+
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+        <footer class="main-footer">
+            <div class="container">
+                <div class="row row-col-gap" data-gutter="60">
+                    <div class="col-md-4">
+                        <h4 class="widget-title-sm">TheBoomerang</h4>
+                        <p>Tincidunt et scelerisque vulputate ultrices ante at eu risus tempor augue congue</p>
+                        <ul class="main-footer-social-list">
+                            <li>
+                                <a class="fa fa-facebook" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-twitter" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-pinterest" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-instagram" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-google-plus" href="product-layout-3.html#"></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="widget-title-sm">Popular Tags</h4>
+                        <ul class="main-footer-tag-list">
+                            <li><a href="product-layout-3.html#">New Season</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">Watches</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">woman</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">classic</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">modern</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">blue</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">shoes</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">running</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">jeans</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">sports</a>
+                            </li>
+                            <li><a href="product-layout-3.html#">laptops</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-4">
+                        <h4 class="widget-title-sm">Jobs</h4>
+                        <form>
+
+                            <input class="btn btn-primary" type="submit" value="We're hiring" />
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/icheck.js"></script>
+    <script src="/js/ionrangeslider.js"></script>
+    <script src="/js/jqzoom.js"></script>
+    <script src="/js/card-payment.js"></script>
+    <script src="/js/owl-carousel.js"></script>
+    <script src="/js/magnific.js"></script>
+    <script src="/js/custom.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment-with-locales.min.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/3.1.3/js/bootstrap-datetimepicker.min.js"></script>
+
+
+    <script src="/js/switcher.js"></script>
+
+    <script type="text/javascript">
+         $(function () {
+                       var bindDatePicker = function() {
+                            $(".date").datetimepicker({
+                            format:'YYYY-MM-DD',
+                                icons: {
+                                    time: "fa fa-clock-o",
+                                    date: "fa fa-calendar",
+                                    up: "fa fa-arrow-up",
+                                    down: "fa fa-arrow-down"
+                                }
+                            }).find('input:first').on("blur",function () {
+                                // check if the date is correct. We can accept dd-mm-yyyy and yyyy-mm-dd.
+                                // update the format if it's yyyy-mm-dd
+                                var date = parseDate($(this).val());
+
+                                if (! isValidDate(date)) {
+                                    //create date based on momentjs (we have that)
+                                    date = moment().format('YYYY-MM-DD');
+                                }
+
+                                $(this).val(date);
+                            });
+                        }
+
+                       var isValidDate = function(value, format) {
+                            format = format || false;
+                            // lets parse the date to the best of our knowledge
+                            if (format) {
+                                value = parseDate(value);
+                            }
+
+                            var timestamp = Date.parse(value);
+
+                            return isNaN(timestamp) == false;
+                       }
+
+                       var parseDate = function(value) {
+                            var m = value.match(/^(\d{1,2})(\/|-)?(\d{1,2})(\/|-)?(\d{4})$/);
+                            if (m)
+                                value = m[5] + '-' + ("00" + m[3]).slice(-2) + '-' + ("00" + m[1]).slice(-2);
+
+                            return value;
+                       }
+
+                       bindDatePicker();
+                    });
+    </script>
+
+</body>
+
+</html>
