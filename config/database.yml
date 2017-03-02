@@ -81,5 +81,6 @@ test:
 production:
   <<: *default
   database: boomerang_production
-  username: boomerang
-  password: <%= ENV['BOOMERANG_DATABASE_PASSWORD'] %>
+  username: theboomerang
+  password: <%= ENV['THEBOOMERANG_DATABASE_PASSWORD'] %>
+  host: localhost
