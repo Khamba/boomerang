@@ -34,4 +34,8 @@ Rails.application.routes.draw do
   get 'wedding-dresses', to: 'products#category_index', category: 'Wedding Dresses'
   get 'western-dresses', to: 'products#category_index', category: 'Western Dresses'
 
+  get 'login', to: 'authentication#login'
+  get "/auth/:provider/callback", to: 'authentication#oauth_callback'
+  get 'auth/failure', to: redirect('/')
+
 end
