@@ -6,7 +6,7 @@
 #  name            :string
 #  rent_price      :integer
 #  actual_price    :integer
-#  sizes_available :string           default("{}"), is an Array
+#  sizes_available :string           default([]), is an Array
 #  description     :text
 #  images          :json
 #  created_at      :datetime         not null
@@ -22,6 +22,8 @@ class Product < ActiveRecord::Base
   has_many :product_categories, dependent: :destroy
   accepts_nested_attributes_for :product_categories
   has_many :categories, through: :product_categories
+  has_many :line_items
+  has_many :orders, through: :line_items
 
   validates_presence_of :name
   validates :rent_price, numericality: { greater_than: 0, integer: true }

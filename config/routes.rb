@@ -1,23 +1,28 @@
 # == Route Map
 #
-#        Prefix Verb   URI Pattern                             Controller#Action
-#          root GET    /                                       static_pages#home
-#    categories GET    /products/categories(.:format)          categories#index
-#               POST   /products/categories(.:format)          categories#create
-#  new_category GET    /products/categories/new(.:format)      categories#new
-# edit_category GET    /products/categories/:id/edit(.:format) categories#edit
-#      category GET    /products/categories/:id(.:format)      categories#show
-#               PATCH  /products/categories/:id(.:format)      categories#update
-#               PUT    /products/categories/:id(.:format)      categories#update
-#               DELETE /products/categories/:id(.:format)      categories#destroy
-#      products GET    /products(.:format)                     products#index
-#               POST   /products(.:format)                     products#create
-#   new_product GET    /products/new(.:format)                 products#new
-#  edit_product GET    /products/:id/edit(.:format)            products#edit
-#       product GET    /products/:id(.:format)                 products#show
-#               PATCH  /products/:id(.:format)                 products#update
-#               PUT    /products/:id(.:format)                 products#update
-#               DELETE /products/:id(.:format)                 products#destroy
+#          Prefix Verb   URI Pattern                             Controller#Action
+#            root GET    /                                       static_pages#home
+#      categories GET    /products/categories(.:format)          categories#index
+#                 POST   /products/categories(.:format)          categories#create
+#    new_category GET    /products/categories/new(.:format)      categories#new
+#   edit_category GET    /products/categories/:id/edit(.:format) categories#edit
+#        category PATCH  /products/categories/:id(.:format)      categories#update
+#                 PUT    /products/categories/:id(.:format)      categories#update
+#                 DELETE /products/categories/:id(.:format)      categories#destroy
+#        products GET    /products(.:format)                     products#index
+#                 POST   /products(.:format)                     products#create
+#     new_product GET    /products/new(.:format)                 products#new
+#    edit_product GET    /products/:id/edit(.:format)            products#edit
+#         product GET    /products/:id(.:format)                 products#show
+#                 PATCH  /products/:id(.:format)                 products#update
+#                 PUT    /products/:id(.:format)                 products#update
+#                 DELETE /products/:id(.:format)                 products#destroy
+#  ethnic_dresses GET    /ethnic-dresses(.:format)               products#category_index {:category=>"Ethnic Dresses"}
+# wedding_dresses GET    /wedding-dresses(.:format)              products#category_index {:category=>"Wedding Dresses"}
+# western_dresses GET    /western-dresses(.:format)              products#category_index {:category=>"Western Dresses"}
+#           login GET    /login(.:format)                        authentication#login
+#                 GET    /auth/:provider/callback(.:format)      authentication#oauth_callback
+#    auth_failure GET    /auth/failure(.:format)                 redirect(301, /)
 #
 
 Rails.application.routes.draw do

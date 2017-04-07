@@ -5,7 +5,9 @@ class AuthenticationController < ApplicationController
   end
 
   def oauth_callback
-    render text: 'success'
+    @user = User.from_omniauth(request.env['omniauth.auth'])
+    session[:user_id] = @user.id
+    redirect_to root_path
   end
 
 end

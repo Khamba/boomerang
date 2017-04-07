@@ -1,4 +1,6 @@
 class ProductsController < ApplicationController
+
+  before_action -> { restrict_to('admin') }, except: [:index, :show, :category_index]
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   layout 'application'
 

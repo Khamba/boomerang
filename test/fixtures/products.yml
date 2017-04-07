@@ -6,7 +6,7 @@
 #  name            :string
 #  rent_price      :integer
 #  actual_price    :integer
-#  sizes_available :string           default("{}"), is an Array
+#  sizes_available :string           default([]), is an Array
 #  description     :text
 #  images          :json
 #  created_at      :datetime         not null

@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+
+  before_action -> { restrict_to('admin') }
   before_action :set_category, only: [:show, :edit, :update, :destroy]
   layout 'application'
 
