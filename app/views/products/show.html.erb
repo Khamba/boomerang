@@ -65,7 +65,7 @@
 
 
                       <li class="dropdown">
-                          <a class="fa fa-shopping-cart" href="shopping-cart.html"></a>
+                          <a class="fa fa-shopping-cart" href="/shopping-cart.html"></a>
                       </li>
                   </ul>
               </div>
@@ -101,8 +101,10 @@
                     <p class="text-muted">Actual Price - <%= @product.actual_price %></p>
 
 
-                    <form class="form-horizontal">
+                    <%= form_tag(add_to_cart_path, class: 'form-horizontal') do %>
                             <fieldset>
+
+                                    <%= hidden_field_tag('cart[product_id]', @product.id) %>
 
                                     <!-- Multiple Radios (inline) -->
                                     <div class="form-group">
@@ -110,7 +112,7 @@
                                       <div class="col-md-4">
                                         <% @product.sizes_available.each do |size| %>
                                           <label class="radio-inline" for="radios-0">
-                                            <input type="radio" name="size" id="radios-0" value=<%= size %>>
+                                            <input type="radio" name="cart[size]" id="radios-0" value=<%= size %> required>
                                             <%= size %>
                                           </label>
                                         <% end %>
@@ -122,48 +124,36 @@
                                       <label class="col-md-4 control-label" for="rentForDays">Rent for days</label>
                                       <div class="col-md-4">
                                         <label class="radio-inline" for="radios-0">
-                                          <input type="radio" name="rentForDays" id="radios-0" value="3" checked="checked">
+                                          <input type="radio" name="cart[days_to_rent]" id="radios-0" value="3" checked="checked">
                                           3
                                         </label>
                                         <label class="radio-inline" for="radios-1">
-                                          <input type="radio" name="rentForDays" id="radios-1" value="5">
+                                          <input type="radio" name="cart[days_to_rent]" id="radios-1" value="5">
                                           5
                                         </label>
                                         <label class="radio-inline" for="radios-2">
-                                          <input type="radio" name="rentForDays" id="radios-2" value="7">
+                                          <input type="radio" name="cart[days_to_rent]" id="radios-2" value="7">
                                           7
                                         </label>
-                                      </div>
-                                    </div>
-
-
-
-                                    <div class="form-group">
-                                      <label class="col-md-4 control-label" for="cart">Delivery date</label>
-                                      <div class="col-md-4">
-                                        <div class='input-group date' id='datetimepicker1'>
-                                                    <input type='text' class="form-control" />
-                                                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                                                    </span>
-                                                </div>
                                       </div>
                                     </div>
 
                                     <div class="form-group">
                                       <label class="col-md-4 control-label" for="cart">Rent Now</label>
                                       <div class="col-md-4">
-                                        <button id="cart" name="cart" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</button>
+                                        <!-- <button id="cart" name="cart" class="btn btn-primary"><i class="fa fa-shopping-cart"></i>Add to cart</button> -->
+                                        <%= submit_tag('Add to cart', id: 'cart', class: 'btn btn-primary') %>
                                       </div>
                                     </div>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                       <label class="col-md-4 control-label" for="cart">Buy now</label>
                                       <div class="col-md-4">
                                         <button id="cart" name="cart" class="btn btn-primary">buy now</button>
                                       </div>
-                                    </div>
+                                    </div> -->
                             </fieldset>
-                    </form>
+                    <% end %>
 
 
                 </div>

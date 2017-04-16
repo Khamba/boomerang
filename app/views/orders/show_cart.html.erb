@@ -1,8 +1,9 @@
+
 <!DOCTYPE HTML>
 <html>
 
 <head>
-    <title>Product layout</title>
+    <title>Shopping Cart</title>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <meta name="keywords" content="Template, html, premium, themeforest" />
@@ -39,6 +40,7 @@
 <body>
     <div class="global-wrapper clearfix" id="global-wrapper">
 
+
       <nav class="navbar navbar-inverse navbar-main yamm" style="">
           <div class="container">
               <div class="navbar-header">
@@ -73,38 +75,77 @@
 
         <div class="container">
             <header class="page-header">
-                <h1 class="page-title"><%= @category.name %></h1>
-
-
+                <h1 class="page-title">My Shopping Bag</h1>
             </header>
-            <div class="row">
-
-                <div class="col-md-12">
-                    <div class="row" data-gutter="15">
-                      <% @products.each do |product| %>
-                        <div class="col-md-4">
-                            <div class="product ">
-                                <ul class="product-labels"></ul>
-                                <div class="product-img-wrap">
-                                    <img class="product-img-primary" src=<%= product.images[0].url %> alt="Image Alternative text" title="Image Title" />
-                                </div>
-                                <a class="product-link" href=<%= product_path(product.id) %>></a>
-                                <div class="product-caption">
-                                    <h5 class="product-caption-title"><%= product.name %></h5>
-                                    <div class="product-caption-price"><span class="product-caption-price-new">
-                                        <%= product.rent_price %>/-
-                                    </div>
-                                    <ul class="product-caption-feature-list">
-                                        <li>Free Shipping</li>
-                                    </ul>
-                                </div>
-                            </div>
-                          </div>
-                        <% end %>
-
+            <% if @cart.empty? %>
+              <div class="row">
+                <div class="col-md-10">
+                  <h4>Your cart is empty.</h4>
                 </div>
-            </div>
-        </div></div>
+                <div class="gap"></div>
+              </div>
+            <% else %>
+              <div class="row">
+                  <div class="col-md-10">
+                      <table class="table table table-shopping-cart">
+                          <thead>
+                              <tr>
+                                  <th>Product</th>
+                                  <th>Title</th>
+                                  <th>Size</th>
+                                  <th>Price</th>
+                                  <th>Days to Rent</th>
+                                  <th>Total</th>
+                                  <th>Remove</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              <% @cart.line_items.each do |line_item| %>
+                                <tr>
+                                    <td class="table-shopping-cart-img">
+                                        <a href=<%= product_path(line_item.product_id) %>>
+                                            <img src=<%= line_item.product.images[0].url %> />
+                                        </a>
+                                    </td>
+                                    <td class="table-shopping-cart-title"><a href=<%= product_path(line_item.product_id) %>><%= line_item.product.name %></a>
+                                    </td>
+                                    <td><%= line_item.size %></td>
+                                    <td><%= line_item.price %></td>
+                                    <td><%= line_item.days_to_rent %></td>
+                                    <td><%= line_item.price %></td>
+                                    <td>
+                                        <a class="fa fa-close table-shopping-remove" href=<%= remove_from_cart_path(line_item_id: line_item.id) %>></a>
+                                    </td>
+                                </tr>
+                              <% end %>
+
+                          </tbody>
+                      </table>
+                      <div class="gap gap-small"></div>
+                  </div>
+                  <div class="col-md-2">
+                      <ul class="shopping-cart-total-list">
+                          <li><span>Subtotal</span><span>$2199</span>
+                          </li>
+                          <li><span>Shopping</span><span>Free</span>
+                          </li>
+                          <li><span>Taxes</span><span>$0</span>
+                          </li>
+                          <li><span>Total</span><span>$2199</span>
+                          </li>
+                      </ul><a class="btn btn-primary" href="shopping-cart-default=true.html#">Checkout</a>
+                  </div>
+              </div>
+            <% end %>
+            <ul class="list-inline">
+                <li><a class="btn btn-default" href="/">Continue Shopping</a>
+                </li>
+            </ul>
+
+        </div>
+
+        <div class="gap"></div>
+
 
         <footer class="main-footer">
             <div class="container">
@@ -130,33 +171,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-md-4">
-                        <h4 class="widget-title-sm">Popular Tags</h4>
-                        <ul class="main-footer-tag-list">
-                            <li><a href="product-layout-3.html#">New Season</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">Watches</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">woman</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">classic</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">modern</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">blue</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">shoes</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">running</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">jeans</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">sports</a>
-                            </li>
-                            <li><a href="product-layout-3.html#">laptops</a>
-                            </li>
-                        </ul>
-                    </div>
+
                     <div class="col-md-4">
                         <h4 class="widget-title-sm">Jobs</h4>
                         <form>

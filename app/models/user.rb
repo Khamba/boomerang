@@ -17,12 +17,12 @@ class User < ActiveRecord::Base
 
   has_many :orders
 
-  def self.from_omniauth(auth_hash)
+  def self.from_omniauth(session_user_id, auth_hash)
     user = User.where(:email => auth_hash["info"]["email"]).first
 
     unless user
-      if session[:user_id]
-        user = User.find(session[:user_id])
+      if session_user_id
+        user = User.find(session_user_id)
       else
         user = User.new
       end
@@ -34,6 +34,10 @@ class User < ActiveRecord::Base
       user.save!
     end
     return user
+  end
+
+  def cart
+    return self.orders.where(status: 'cart').last || Order.create(status: 'cart', user: self)
   end
 
 end
