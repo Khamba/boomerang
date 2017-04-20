@@ -20,4 +20,35 @@ class OrdersController < ApplicationController
     @cart = current_user.cart
   end
 
+  def cart_checkout
+    @cart = current_user.cart
+    @order_shipping_address = OrderShippingAddress.new(user: current_user, order: @cart)
+  end
+
+  def place_order
+    @cart = current_user.cart
+    if @cart.empty?
+      redirect_to root_path
+    else
+      @order_shipping_address = OrderShippingAddress.new(order_params.merge(user: current_user, order: @cart))
+      if @order_shipping_address.save
+        @cart.status = "processing"
+        @cart.save
+        redirect_to thank_you_path
+      else
+        render :cart_checkout
+      end
+    end
+  end
+
+  def thank_you
+    @order = current_user.orders.where(status: 'processing').last
+    @order_shipping_address = @order.order_shipping_address
+  end
+
+  private
+    def order_params
+       params.require(:order).permit(:name, :email, :phone_number, :state, :city, :address, :zip)
+    end
+
 end

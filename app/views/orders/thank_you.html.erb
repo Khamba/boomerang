@@ -1,0 +1,188 @@
+
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Shopping Cart</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta content="utf-8" http-equiv="encoding">
+    <meta name="keywords" content="Template, html, premium, themeforest" />
+    <meta name="description" content="TheBox - premium e-commerce template">
+    <meta name="author" content="Tsoy">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link href='http://fonts.googleapis.com/css?family=Roboto:500,300,700,400italic,400' rel='stylesheet' type='text/css'>
+    <!-- <link href='https://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'> -->
+    <!-- <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'> -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700,600' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/font-awesome.css">
+    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/mystyles.css">
+    <link rel="stylesheet" href="/css/switcher.css" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/bright-turquoise.css" title="bright-turquoise" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/turkish-rose.css" title="turkish-rose" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/salem.css" title="salem" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/hippie-blue.css" title="hippie-blue" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/mandy.css" title="mandy" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/green-smoke.css" title="green-smoke" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/horizon.css" title="horizon" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/cerise.css" title="cerise" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/brick-red.css" title="brick-red" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/de-york.css" title="de-york" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/shamrock.css" title="shamrock" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/studio.css" title="studio" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/leather.css" title="leather" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/denim.css" title="denim" media="all" />
+    <link rel="alternate stylesheet" type="text/css" href="/css/schemes/scarlet.css" title="scarlet" media="all" />
+</head>
+
+<body>
+    <div class="global-wrapper clearfix" id="global-wrapper">
+
+
+      <nav class="navbar navbar-inverse navbar-main yamm" style="">
+          <div class="container">
+              <div class="navbar-header">
+                  <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#main-nav-collapse" area_expanded="false"><span class="sr-only">Main Menu</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="/" style="color: white">
+                      The boomerang
+                  </a>
+              </div>
+              <div class="collapse navbar-collapse" id="main-nav-collapse">
+
+
+                  <ul class="nav navbar-nav navbar-right">
+
+                      <li><a href="/western-dresses.html" data-effect="mfp-move-from-top">Western Dress</a>
+                      </li>
+
+                      <li><a href="/wedding-dresses.html" data-effect="mfp-move-from-top">Wedding Dress</a>
+                      </li>
+
+                      <li><a href="/login.html" data-effect="mfp-move-from-top">Sign In</a>
+                      </li>
+
+
+                      <li class="dropdown">
+                          <a class="fa fa-shopping-cart" href="/shopping-cart.html"></a>
+                      </li>
+                  </ul>
+              </div>
+          </div>
+      </nav>
+
+        <div class="container">
+            <header class="page-header">
+                <h1 class="page-title">Thank you for shopping with boomerang</h1>
+            </header>
+            <div class="row">
+                <div class="col-md-10">
+                  <table class="table table table-shopping-cart">
+                      <thead>
+                          <tr>
+                              <th>Product</th>
+                              <th>Title</th>
+                              <th>Size</th>
+                              <th>Price</th>
+                              <th>Days to Rent</th>
+                              <th>Total</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                          <% @order.line_items.each do |line_item| %>
+                            <tr>
+                                <td class="table-shopping-cart-img">
+                                    <a href=<%= product_path(line_item.product_id) %>>
+                                        <img src=<%= line_item.product.images[0].url %> />
+                                    </a>
+                                </td>
+                                <td class="table-shopping-cart-title"><a href=<%= product_path(line_item.product_id) %>><%= line_item.product.name %></a>
+                                </td>
+                                <td><%= line_item.size %></td>
+                                <td><%= line_item.price %></td>
+                                <td><%= line_item.days_to_rent %></td>
+                                <td><%= line_item.price %></td>
+                            </tr>
+                          <% end %>
+
+                      </tbody>
+                  </table>
+                    <div class="gap gap-small"></div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-10">
+                  <p>This will be shipped to:</p>
+                  <p><%= @order_shipping_address.name %></p>
+                  <p><%= @order_shipping_address.phone_number %></p>
+                  <p><%= @order_shipping_address.address %></p>
+                  <p><%= @order_shipping_address.city %>, <%= @order_shipping_address.state %></p>
+                  <p><%= @order_shipping_address.zip %></p>
+                  <div class="gap gap-small"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="gap"></div>
+
+
+        <footer class="main-footer">
+            <div class="container">
+                <div class="row row-col-gap" data-gutter="60">
+                    <div class="col-md-4">
+                        <h4 class="widget-title-sm">TheBoomerang</h4>
+                        <p>Tincidunt et scelerisque vulputate ultrices ante at eu risus tempor augue congue</p>
+                        <ul class="main-footer-social-list">
+                            <li>
+                                <a class="fa fa-facebook" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-twitter" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-pinterest" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-instagram" href="product-layout-3.html#"></a>
+                            </li>
+                            <li>
+                                <a class="fa fa-google-plus" href="product-layout-3.html#"></a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4">
+                        <h4 class="widget-title-sm">Jobs</h4>
+                        <form>
+
+                            <input class="btn btn-primary" type="submit" value="We're hiring" />
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+
+    </div>
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/icheck.js"></script>
+    <script src="/js/ionrangeslider.js"></script>
+    <script src="/js/jqzoom.js"></script>
+    <script src="/js/card-payment.js"></script>
+    <script src="/js/owl-carousel.js"></script>
+    <script src="/js/magnific.js"></script>
+    <script src="/js/custom.js"></script>
+
+
+    <script src="/js/switcher.js"></script>
+
+
+
+</body>
+
+</html>

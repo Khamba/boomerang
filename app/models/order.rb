@@ -15,6 +15,7 @@ class Order < ActiveRecord::Base
   has_many :line_items
   has_many :products, through: :line_items
   belongs_to :user
+  has_one :order_shipping_address
 
   def add_item(item_attributes)
     if self.status == 'cart'
@@ -32,6 +33,18 @@ class Order < ActiveRecord::Base
 
   def empty?
     return self.line_items.count == 0
+  end
+
+  def subtotal
+    return self.line_items.map { |item| item.price }.sum
+  end
+
+  def shipping
+    return 0 # free
+  end
+
+  def total
+    self.subtotal + shipping
   end
 
 end

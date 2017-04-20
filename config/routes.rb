@@ -49,6 +49,9 @@ Rails.application.routes.draw do
   post 'add-to-cart', to: 'orders#add_to_cart', as: :add_to_cart
   get 'remove-from-cart', to: 'orders#remove_from_cart', as: :remove_from_cart
   get 'shopping-cart', to: 'orders#show_cart', as: :show_cart
+  get 'cart/checkout', to: 'orders#cart_checkout', as: :cart_checkout
+  post 'cart/checkout', to: "orders#place_order", as: :place_order
+  get 'thank_you', to: 'orders#thank_you'
 
   get 'about_us', to: 'static_pages#about_us'
 end

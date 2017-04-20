@@ -16,6 +16,7 @@
 class User < ActiveRecord::Base
 
   has_many :orders
+  has_many :order_shipping_addresses
 
   def self.from_omniauth(session_user_id, auth_hash)
     user = User.where(:email => auth_hash["info"]["email"]).first

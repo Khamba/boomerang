@@ -61,7 +61,7 @@
                       <li><a href="/wedding-dresses.html" data-effect="mfp-move-from-top">Wedding Dress</a>
                       </li>
 
-                      <li><a href="login.html" data-effect="mfp-move-from-top">Sign In</a>
+                      <li><a href="/login.html" data-effect="mfp-move-from-top">Sign In</a>
                       </li>
 
 
@@ -125,15 +125,13 @@
                   </div>
                   <div class="col-md-2">
                       <ul class="shopping-cart-total-list">
-                          <li><span>Subtotal</span><span>$2199</span>
+                          <li><span>Subtotal</span><span><%= @cart.subtotal %></span>
                           </li>
-                          <li><span>Shopping</span><span>Free</span>
+                          <li><span>Shipping</span><span>Free</span>
                           </li>
-                          <li><span>Taxes</span><span>$0</span>
+                          <li><span>Total</span><span><%= @cart.total %></span>
                           </li>
-                          <li><span>Total</span><span>$2199</span>
-                          </li>
-                      </ul><a class="btn btn-primary" href="shopping-cart-default=true.html#">Checkout</a>
+                      </ul><a class="btn btn-primary" href=<%= cart_checkout_path %>>Checkout</a>
                   </div>
               </div>
             <% end %>
