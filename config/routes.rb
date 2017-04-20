@@ -50,4 +50,5 @@ Rails.application.routes.draw do
   get 'remove-from-cart', to: 'orders#remove_from_cart', as: :remove_from_cart
   get 'shopping-cart', to: 'orders#show_cart', as: :show_cart
 
+  get 'about_us', to: 'static_pages#about_us'
 end
