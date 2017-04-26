@@ -1,0 +1,23 @@
+<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#processing" aria-controls="processing" role="tab" data-toggle="tab">Processing</a></li>
+    <li role="presentation"><a href="#delivered" aria-controls="delivered" role="tab" data-toggle="tab">Delivered</a></li>
+    <li role="presentation"><a href="#collected" aria-controls="collected" role="tab" data-toggle="tab">Collected</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="processing">
+      <%= render 'orders_table', orders: @processing_orders %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="delivered">
+      <%= render 'orders_table', orders: @delivered_orders %>
+    </div>
+    <div role="tabpanel" class="tab-pane" id="collected">
+      <%= render 'orders_table', orders: @collected_orders %>
+    </div>
+  </div>
+
+</div>

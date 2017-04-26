@@ -58,3 +58,5 @@ gem "omniauth-google-oauth2"
 gem 'omniauth-facebook'
 
 gem 'authlogic'
+
+gem 'kaminari'

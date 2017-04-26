@@ -26,6 +26,11 @@
 #      add_to_cart POST   /add-to-cart(.:format)                  orders#add_to_cart
 # remove_from_cart GET    /remove-from-cart(.:format)             orders#remove_from_cart
 #        show_cart GET    /shopping-cart(.:format)                orders#show_cart
+#    cart_checkout GET    /cart/checkout(.:format)                orders#cart_checkout
+#      place_order POST   /cart/checkout(.:format)                orders#place_order
+#        thank_you GET    /thank_you(.:format)                    orders#thank_you
+#         about_us GET    /about_us(.:format)                     static_pages#about_us
+#            admin GET    /admin(.:format)                        admin#dashboard
 #
 
 Rails.application.routes.draw do
@@ -54,4 +59,6 @@ Rails.application.routes.draw do
   get 'thank_you', to: 'orders#thank_you'
 
   get 'about_us', to: 'static_pages#about_us'
+
+  get 'admin', to: 'admin#dashboard'
 end
